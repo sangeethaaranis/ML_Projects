@@ -60,27 +60,27 @@ x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.1, random_st
 lin_reg_model = LinearRegression()
 lin_reg_model.fit(x_train,y_train)
 
-training_data_prediction = lin_reg_model.predict(x_train)
+training_data_prediction_lr = lin_reg_model.predict(x_train)
 
-error_score = metrics.r2_score(y_train, training_data_prediction)
+error_score = metrics.r2_score(y_train, training_data_prediction_lr)
 print("R squared error Linear Regression training data: ", error_score)
 
 # %%
 # Linear Regression model Visualization
-plt.scatter(y_train, training_data_prediction)
+plt.scatter(y_train, training_data_prediction_lr)
 plt.xlabel("Actual Price")
 plt.ylabel("Predicted Price")
 plt.show()
 
 # %%
 #Test Data Prediction in Linear Regression
-test_data_prediction = lin_reg_model.predict(x_test)
-error_score = metrics.r2_score(y_test, test_data_prediction)
+test_data_prediction_lr = lin_reg_model.predict(x_test)
+error_score = metrics.r2_score(y_test, test_data_prediction_lr)
 print("R squared error Linear Regression test data : ", error_score)
 
 # %%
 # Linear Regression model Visualization for test data
-plt.scatter(y_test, test_data_prediction)
+plt.scatter(y_test, test_data_prediction_lr)
 plt.xlabel("Actual Price")
 plt.ylabel("Predicted Price")
 plt.show()
@@ -89,14 +89,14 @@ plt.show()
 lasso_reg_model = Lasso()
 lasso_reg_model.fit(x_train,y_train)
 
-training_data_prediction = lasso_reg_model.predict(x_train)
+training_data_prediction_lasso = lasso_reg_model.predict(x_train)
 
-error_score = metrics.r2_score(y_train, training_data_prediction)
+error_score = metrics.r2_score(y_train, training_data_prediction_lasso)
 print("R squared error LASSO Regression training data: ", error_score)
 
 # %%
 # Lasso Regression model Visualization
-plt.scatter(y_train, training_data_prediction)
+plt.scatter(y_train, training_data_prediction_lasso)
 plt.xlabel("Actual Price")
 plt.ylabel("Predicted Price")
 plt.show()
@@ -108,11 +108,29 @@ error_score = metrics.r2_score(y_test, test_data_prediction)
 print("R squared error LASSO Regression test data : ", error_score)
 
 # %%
-# Linear Regression model Visualization for test data
+# Lasso Regression model Visualization for test data
 plt.scatter(y_test, test_data_prediction)
 plt.xlabel("Actual Price")
 plt.ylabel("Predicted Price")
 plt.show()
+
+# %%
+print("Linear: " ,lin_reg_model.coef_)
+print("Lasso: ", lasso_reg_model.coef_)
+
+# %%
+#Increasing alpha
+lasso_reg_model2 = Lasso(alpha = 1000)
+lasso_reg_model2.fit(x_train, y_train)
+training_data_prediction_lasso2 = lasso_reg_model2.predict(x_train)
+error_score = metrics.r2_score(y_train, training_data_prediction_lasso2)
+print("R squared error LASSO Regression with increased aplha training data : ", error_score)
+
+test_data_prediction_lasso2 = lasso_reg_model2.predict(x_test)
+error_score = metrics.r2_score(y_test, test_data_prediction_lasso2)
+print("R squared error LASSO Regression with increased aplha training data : ", error_score)
+
+
 
 
 # %%
