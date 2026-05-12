@@ -128,9 +128,5 @@ print("R squared error LASSO Regression with increased aplha training data : ", 
 
 test_data_prediction_lasso2 = lasso_reg_model2.predict(x_test)
 error_score = metrics.r2_score(y_test, test_data_prediction_lasso2)
-print("R squared error LASSO Regression with increased aplha training data : ", error_score)
+print("R squared error LASSO Regression with increased aplha test data : ", error_score)
 
-
-
-
-# %%
